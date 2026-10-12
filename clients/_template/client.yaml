@@ -14,6 +14,9 @@ period_end:
 accounts:
   google_ads: {customer_id: "123-456-7890"}         # the client account, not your MCC
   bing_ads: {customer_id: 1234567, account_id: 123456789}
+  hubspot: {token_env: HUBSPOT_TOKEN_CLIENTNAME, lookback_days: 365}   # one read-only private app per portal
+  gsc: {site_url: "sc-domain:example.com"}          # or "https://www.example.com/" for URL-prefix properties
+  semrush: {domain: example.com, database: uk, limit: 2000}   # limit caps API units spent per run
 
 # --- Commercial targets -------------------------------------------------------
 target_cpa: 120               # default cost per conversion target across paid

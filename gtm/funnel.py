@@ -34,13 +34,24 @@ def _src_key(s: str) -> str:
     return str(s).strip().upper().replace(" ", "_")
 
 
+def parse_dates(s: pd.Series, dayfirst: bool) -> pd.Series:
+    """ISO dates (API pulls, many HubSpot exports) are always Y-M-D; dayfirst only applies to the rest.
+    Applying dayfirst to ISO strings silently swaps day and month (2026-07-03 → 7 March)."""
+    s = s.astype("string").str.strip()
+    iso = s.str.match(r"^\d{4}-\d{2}-\d{2}").fillna(False)
+    out = pd.Series(pd.NaT, index=s.index, dtype="datetime64[ns]")
+    out[iso] = pd.to_datetime(s[iso].str[:10], format="%Y-%m-%d", errors="coerce")
+    if (~iso).any():
+        out[~iso] = pd.to_datetime(s[~iso], errors="coerce", dayfirst=dayfirst)
+    return out
+
+
 def load_contacts(cfg: dict) -> pd.DataFrame:
     df = load_csv(require_file(cfg, "hubspot_contacts*.csv", "HubSpot contacts export"), ["deal_amount"])
     df["source"] = df.get("source", "UNKNOWN").map(_src_key) if "source" in df.columns else "UNKNOWN"
     df["source_drilldown"] = df["source_drilldown"].astype(str).str.lower() if "source_drilldown" in df.columns else ""
     for c in ["create_date", *STAGES]:
-        df[c] = pd.to_datetime(df[c], errors="coerce", dayfirst=cfg.get("dayfirst_dates", True)) \
-            if c in df.columns else pd.NaT
+        df[c] = parse_dates(df[c], cfg.get("dayfirst_dates", True)) if c in df.columns else pd.NaT
     # Backfill missing stage dates from current lifecycle stage (ever-reached semantics)
     if "lifecycle_stage" in df.columns:
         lc = df["lifecycle_stage"].astype(str).str.lower().str.replace(r"[^a-z]", "", regex=True)

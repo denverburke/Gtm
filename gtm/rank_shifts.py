@@ -90,11 +90,12 @@ def _gsc_pair(cfg: dict, kind: str):
     key = "query" if kind == "queries" else "url"
     a = load_csv(cur, GSC_NUM)
     b = load_csv(prev, GSC_NUM)
+    a, b = a.drop(columns=["ctr"], errors="ignore"), b.drop(columns=["ctr"], errors="ignore")
     m = a.merge(b, on=key, how="outer", suffixes=("", "_prev")).fillna(
         {"clicks": 0, "impressions": 0, "clicks_prev": 0, "impressions_prev": 0})
-    for c in ("ctr", "ctr_prev"):
-        if c in m.columns and m[c].max() > 1:  # GSC exports CTR as "4.2%"
-            m[c] = m[c] / 100
+    # Recompute CTR rather than trusting the export's "4.2%" strings (API pulls don't include it)
+    m["ctr"] = m["clicks"] / m["impressions"].where(m["impressions"] > 0)
+    m["ctr_prev"] = m["clicks_prev"] / m["impressions_prev"].where(m["impressions_prev"] > 0)
     m["click_delta"] = m["clicks"] - m["clicks_prev"]
     m["impr_delta"] = m["impressions"] - m["impressions_prev"]
     m["pos_delta"] = m["position_prev"] - m["position"]  # +ve = improved

@@ -63,3 +63,9 @@ def test_cli_all(cfg):
     assert out.returncode == 0, out.stderr
     for h in ("Ranking shifts", "Search terms", "HubSpot funnel", "Paid media"):
         assert h in out.stdout
+
+
+def test_date_parsing_iso_and_uk_formats():
+    from gtm.funnel import parse_dates
+    out = parse_dates(pd.Series(["2026-07-03", "2026-07-03T10:00:00Z", "03/07/2026", "", None]), dayfirst=True)
+    assert out[:3].dt.month.tolist() == [7, 7, 7] and out[3:].isna().all()

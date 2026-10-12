@@ -50,7 +50,7 @@ analysis skip with a message saying which file it expected. They don't break the
 6. **Every action needs an owner channel, an expected impact and a confidence level (H/M/L).**
 7. **Never change ad accounts, HubSpot or the CMS directly.** Output recommendations and ready-to-paste
    assets (negative lists, keyword lists, briefs). A human applies them.
-8. **Ad platform APIs are read-only.** Only pull data through `python -m gtm fetch`. Never write code or
-   commands that create, change or delete anything in Google Ads or Microsoft Ads, and never work around a
-   BLOCKED read-only check.
+8. **All platform APIs are read-only.** Only pull data through `python -m gtm fetch`. Never write code or
+   commands that create, change or delete anything in Google Ads, Microsoft Ads, HubSpot, Search Console or
+   Semrush. Never add endpoints to the allow-list in `gtm/fetch/http.py`, and never work around a BLOCKED check.
 9. Client data stays in this workspace. Never paste it into external services or public artifacts.
