@@ -1,0 +1,6 @@
+# Optional: direct API pulls (python -m gtm fetch). Install in a virtualenv —
+# bingads fails to build against some distro-patched system Pythons.
+-r requirements.txt
+google-ads>=28.0
+bingads>=13.0.20
+google-auth-oauthlib>=1.2

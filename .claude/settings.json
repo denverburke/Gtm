@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "ask": [
+      "Edit(gtm/fetch/**)",
+      "Write(gtm/fetch/**)",
+      "Edit(.claude/settings.json)",
+      "Write(.claude/settings.json)"
+    ],
+    "deny": [
+      "Bash(*mutate*)",
+      "Bash(*CampaignManagementService*)",
+      "Bash(*BulkServiceManager*)"
+    ]
+  }
+}

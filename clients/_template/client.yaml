@@ -10,6 +10,11 @@ dayfirst_dates: true          # HubSpot exports in UK format (DD/MM/YYYY)
 period_start:
 period_end:
 
+# --- API accounts (for `python -m gtm fetch`; credentials live in environment secrets, not here)
+accounts:
+  google_ads: {customer_id: "123-456-7890"}         # the client account, not your MCC
+  bing_ads: {customer_id: 1234567, account_id: 123456789}
+
 # --- Commercial targets -------------------------------------------------------
 target_cpa: 120               # default cost per conversion target across paid
 channel_targets:              # optional per-channel overrides
