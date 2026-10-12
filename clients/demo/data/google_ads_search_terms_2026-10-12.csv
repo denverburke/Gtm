@@ -1,0 +1,25 @@
+Search terms report
+1 September 2026 - 30 September 2026
+Search term,Match type,Campaign,Ad group,Keyword,Impr.,Clicks,Cost,Conversions,Conv. value
+northwind hr,Exact match,Brand,Brand - AG1,northwind hr,5040,420,£210.00,38,0
+northwind payroll login,Phrase match,Brand,Brand - AG1,northwind,3420,180,£95.00,0,0
+payroll software,Exact match,Payroll - Generic,Payroll - Generic - AG1,payroll software,3040,160,"£1,450.00",11,0
+payroll software uk,Phrase match,Payroll - Generic,Payroll - Generic - AG1,payroll software,950,95,£820.00,9,0
+free payroll software,Broad match,Payroll - Generic,Payroll - Generic - AG1,payroll software,960,120,£640.00,0,0
+payroll software free download,Broad match,Payroll - Generic,Payroll - Generic - AG1,payroll software,640,40,£210.00,0,0
+payroll jobs,Broad match,Payroll - Generic,Payroll - Generic - AG1,payroll,480,60,£310.00,0,0
+payroll jobs remote,Broad match,Payroll - Generic,Payroll - Generic - AG1,payroll,275,25,£140.00,0,0
+small business payroll,Broad match,Payroll - Generic,Payroll - Generic - AG1,payroll software,910,70,£520.00,6,0
+payroll for small business uk,Broad match,Payroll - Generic,Payroll - Generic - AG1,payroll software,576,32,£260.00,4,0
+hr software,Exact match,HR Software,HR Software - AG1,hr software,1260,140,"£1,380.00",9,0
+hris for small business,Phrase match,HR Software,HR Software - AG1,hris,675,45,£420.00,3,0
+hr software payroll integration,Phrase match,HR Software,HR Software - AG1,hr software,420,30,£300.00,3,0
+payroll and hr software,Broad match,HR Software,HR Software - AG1,hr software,315,35,£350.00,2,0
+what is hr software,Broad match,HR Software,HR Software - AG1,hr software,1620,90,£380.00,0,0
+brightpay alternatives,Phrase match,Competitor,Competitor - AG1,brightpay,720,40,£520.00,2,0
+brightpay login,Phrase match,Competitor,Competitor - AG1,brightpay,715,55,£330.00,0,0
+employee onboarding software,Phrase match,HR Software,HR Software - AG1,onboarding software,532,28,£300.00,3,0
+how to run payroll,Broad match,Payroll - Generic,Payroll - Generic - AG1,payroll,750,50,£210.00,1,0
+what is an hris,Broad match,HR Software,HR Software - AG1,hris,720,40,£160.00,1,0
+northwind hr pricing,Broad match,HR Software,HR Software - AG1,hr software,475,25,£110.00,4,0
+Total: account,,,,,,,,,

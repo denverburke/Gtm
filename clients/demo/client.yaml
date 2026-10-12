@@ -1,0 +1,67 @@
+# Copy this folder to clients/<client-slug>/ and fill in.
+# Raw exports go in clients/<client-slug>/data/ (git-ignored — client data never gets committed).
+
+name: Northwind HR (demo)
+industry: B2B SaaS            # gives the agents context for benchmarks and tone
+currency_symbol: "£"
+dayfirst_dates: true          # HubSpot exports in UK format (DD/MM/YYYY)
+
+# Reporting window for the HubSpot cohort (contacts created in range). Leave blank for "everything in the file".
+period_start: 2026-07-01
+period_end: 2026-09-30
+
+# --- Commercial targets -------------------------------------------------------
+target_cpa: 120               # default cost per conversion target across paid
+channel_targets:              # optional per-channel overrides
+  google_ads: {cpa: 100}
+  bing_ads: {cpa: 90}
+  meta_ads: {cpa: 60}
+  linkedin_ads: {cpa: 250}
+
+# --- Brand & campaign structure ----------------------------------------------
+brand_terms: [northwind]
+brand_campaign_pattern: "brand"            # regex matched against campaign names
+competitors: [brightpay, sage]
+
+# Campaign → the query themes it should own. Used to catch misrouted search terms.
+# Key is a substring of the campaign name.
+campaign_themes:
+  Payroll: [payroll]
+  HR Software: [hr software, hris, people management]
+  Competitor: [brightpay, sage]
+
+# Theme → the landing page that should serve it (used by the seo + paid agents)
+landing_pages:
+  payroll: https://example.com/payroll
+  hr software: https://example.com/hr-software
+
+# --- HubSpot ------------------------------------------------------------------
+# Maps each spend export to the HubSpot Original Source + drill-down it should match.
+spend_mapping:
+  google_ads: [PAID_SEARCH, google]
+  bing_ads: [PAID_SEARCH, bing]
+  meta_ads: [PAID_SOCIAL, facebook]
+  linkedin_ads: [PAID_SOCIAL, linkedin]
+
+# --- GEO (AI search visibility) -----------------------------------------------
+# Prompts a buyer would ask an AI assistant. The geo-analyst checks who gets cited.
+geo_prompts:
+  - best payroll software for UK SMEs
+  - alternatives to brightpay
+  - how to choose an HRIS for a 200 person company
+
+# --- Analysis thresholds (sensible defaults if omitted) -----------------------
+thresholds:
+  rank_min_volume: 50
+  rank_min_delta: 3
+  gsc_min_impressions: 100
+  ctr_erosion_pts: 1.5
+  waste_min_spend: 60          # default: half of target_cpa
+  promote_min_conversions: 2
+  cpa_overrun: 1.5
+  campaign_min_spend: 200
+  funnel_min_mql: 10
+
+# Anything the agents should always keep in mind for this client
+notes: |
+  e.g. Q4 focus is enterprise; LinkedIn is judged on SQLs not CPL; don't recommend pausing brand.

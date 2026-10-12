@@ -1,0 +1,11 @@
+# Client data never goes in git. Only the synthetic demo client is committed.
+clients/*/data/*
+!clients/demo/data/
+!clients/demo/data/*
+reports/*
+!reports/.gitkeep
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.env
